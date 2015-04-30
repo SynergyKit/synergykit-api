@@ -1,6 +1,6 @@
 ##Basics
 
-Welcome to SynergyKIT's API documentation. We have created a simple name spaced API that allows you full control over your applications.
+Welcome to SynergyKit's API documentation. We have created a simple name spaced API that allows you full control over your applications.
 
 All of the functionality that you find in our web control panel is available via the API. Today we support all of the major application actions allowing you to build your own control interface using our API.
 
