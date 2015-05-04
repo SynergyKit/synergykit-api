@@ -1,6 +1,6 @@
 <h2 id="basics">Basics</h2>
 
-<p>Welcome to SynergyKIT’s API documentation. We have created a simple name spaced API that allows you full control over your applications.</p>
+<p>Welcome to SynergyKit’s API documentation. We have created a simple name spaced API that allows you full control over your applications.</p>
 
 <p>All of the functionality that you find in our web control panel is available via the API. Today we support all of the major application actions allowing you to build your own control interface using our API.</p>
 
@@ -8,7 +8,7 @@
 
 <h3 id="quick-reference">Quick reference</h3>
 
-<p>All API access is over HTTPS, and accessed via the <code>https://tenant.api.synergykit.com</code> domain. The relative path prefix <code>/v2.1</code> indicates that we are currently using version 2.1 of the API.</p>
+<p>All API access is over HTTPS, and accessed via the domain <code>https://tenant.api.synergykit.com/v2.1</code> The relative path prefix <strong>/v2.1</strong> indicates that we are currently using version 2.1 of the API.</p>
 
 <table>
 <thead>
@@ -164,8 +164,6 @@
   <td align="left"><a href="#using-batch">Using batch</a></td>
 </tr>
 </tbody></table>
-
-
 
 
 <h3 id="requests">Requests</h3>

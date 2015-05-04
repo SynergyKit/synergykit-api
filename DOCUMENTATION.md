@@ -5,16 +5,16 @@ Welcome to SynergyKit's API documentation. We have created a simple name spaced 
 All of the functionality that you find in our web control panel is available via the API. Today we support all of the major application actions allowing you to build your own control interface using our API.
 
 ### Quick reference
-All API access is over HTTPS, and accessed via the `https://tenant.api.synergykit.com` domain. The relative path prefix `/v2.1` indicates that we are currently using version 2.1 of the API.
+All API access is over HTTPS, and accessed via the domain `https://tenant.api.synergykit.com/v2.1` The relative path prefix **/v2.1** indicates that we are currently using version 2.1 of the API.
 
 |Endpoint|HTTP Request|Description
 |:-|:-|:-
-|**Documents**||
+|**Documents**|||
 |`/data/<collectionName>`|POST|<a href="#create-a-new-document">Create a new document</a>
 |`/data/<collectionName>/<documentId>`|GET|<a href="#retrieve-an-existing-document-by-id">Retrieve an existing document by ID</a>
 |`/data/<collectionName>/<documentId>`|PUT|<a href="#update-document">Update document</a>
 |`/data/<collectionName>/<documentId>`|DELETE|<a href="#delete-document">Delete document</a>
-|**Users**||
+|**Users**|||
 |`/users`|POST|<a href="#create-a-new-user">Create a new user</a>
 |`/users/login`|POST|<a href="#login-user">Login user</a>
 |`/users/<userId>`|GET|<a href="#retrieve-an-existing-user-by-id">Retrieve an existing user by ID</a>
@@ -27,16 +27,16 @@ All API access is over HTTPS, and accessed via the `https://tenant.api.synergyki
 |`/users/<userId>/platforms/<platformId>`|PUT|<a href="#update-platform">Update platform</a>
 |`/users/<userId>/platforms/<platformId>`|DELETE|<a href="#delete-platform">Delete platform</a>
 |`/users`|POST|<a href="#linking-users">Linking users</a>
-|**Communication**||
+|**Communication**|||
 |`/users/notification`|POST|<a href="#send-notification">Send notification</a>
 |`/mail/<templateUrl>`|POST|<a href="#send-e-mail">Send e-mail</a>
-|**Files**||
+|**Files**|||
 |`/files`|POST|<a href="#upload-file">Upload file</a>
 |`/files/<fileId>`|GET|<a href="#retrieve-file-by-id">Retrieve file by ID</a>
 |`/files/<fileId>`|DELETE|<a href="#delete-file">Delete file</a>
-|**Cloud Code**||
+|**Cloud Code**|||
 |`/functions/<cloudCodeUrl>`|POST|<a href="#run-cloud-code">Run cloud code</a>
-|**Batch**||
+|**Batch**|||
 |`/batch`|POST|<a href="#using-batch">Using batch</a>
 
 ###Requests
