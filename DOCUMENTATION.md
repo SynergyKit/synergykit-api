@@ -5,7 +5,7 @@ Welcome to SynergyKit's API documentation. We have created a simple name spaced 
 All of the functionality that you find in our web control panel is available via the API. Today we support all of the major application actions allowing you to build your own control interface using our API.
 
 ### Quick reference
-All API access is over HTTPS, and accessed via the domain `https://tenant.api.synergykit.com/v2.1` The relative path prefix **/v2.1** indicates that we are currently using version 2.1 of the API.
+All API access is over HTTPS, and accessed via the domain `https://tenant.api.synergykit.com` The relative path prefix `/v2.1` indicates that we are currently using version 2.1 of the API.
 
 |Endpoint|HTTP Request|Description
 |:-|:-|:-
@@ -102,7 +102,9 @@ The response will be a JSON object for a request on a single object and an array
 ###Authorization
 SynergyKIT API v2.1 uses basic authorization. Authorization is done via HTTP headers. For example, if the name of your application is Demo, base url is:
 
-`https://demo.api.synergykit.com/v2.1`
+```url
+https://demo.api.synergykit.com/v2.1
+```
 
 **Curl example**
 ```text
@@ -129,7 +131,9 @@ Documents are data saved in collections. Collections are basically tables in dat
 ###Create a new document
 To create a new document in collection example, send a **POST** request to
 
-`https://demo.api.synergykit.com/v2.1/data/example`
+```url
+https://demo.api.synergykit.com/v2.1/data/example
+```
 
 | Method | Usage | Description
 |:-|:-|-
@@ -170,7 +174,9 @@ A document will be created using the provided information. The response body wil
 
 To show an individual document, send a **GET** request to
 
-`https://demo.api.synergykit.com/v2.1/data/example/2393265f-cfee-429a-ad04-3d2fbd1b126d`
+```url
+https://demo.api.synergykit.com/v2.1/data/example/2393265f-cfee-429a-ad04-3d2fbd1b126d
+```
 
 **Curl example**
 ```text
@@ -198,7 +204,9 @@ The response body will contain a JSON object.
 ### Update document
 To update document, send a **PUT** request to
 
-`https://demo.api.synergykit.com/v2.1/data/example/2393265f-cfee-429a-ad04-3d2fbd1b126d`
+```url
+https://demo.api.synergykit.com/v2.1/data/example/2393265f-cfee-429a-ad04-3d2fbd1b126d
+```
 
 **Curl example**
 ```text
@@ -229,7 +237,9 @@ The response body will contain a JSON object. Notice, that the version was incre
 ### Delete document
 To delete document, send a **DELETE** request to
 
-`https://demo.api.synergykit.com/v2.1/data/example/2393265f-cfee-429a-ad04-3d2fbd1b126d`
+```url
+https://demo.api.synergykit.com/v2.1/data/example/2393265f-cfee-429a-ad04-3d2fbd1b126d
+```
 
 ```text
 curl -X DELETE \
@@ -441,7 +451,9 @@ Users are alfa and omega of every application. In SynergyKit you can easily work
 ### Create a new user
 To create a new user, send a **POST** request to
 
-`https://demo.api.synergykit.com/v2.1/users`
+```url
+https://demo.api.synergykit.com/v2.1/users
+```
 
 
 **Curl example**
@@ -497,14 +509,18 @@ By default, user is not activated. This mean, that you can use this state to val
 
 To activate user, send an email with this activation link
 
-`https://demo.api.synergykit.com/v2.1/users/activation/9d555815f0265c2270a7bbf3b1ea3d4e09ac48ae?callback=https://synergykit.com`
+```url
+https://demo.api.synergykit.com/v2
+``.1/users/activation/9d555815f0265c2270a7bbf3b1ea3d4e09ac48ae?callback=https://synergykit.com`
 
 You can provide parameter callback with url address where you want to redirect user after activation.
 
 ### Login user
 After you allow users to sign up, you need to let them log in to their account with an email and password in the future. To do this, send a POST request to
 
-`https://demo.api.synergykit.com/v2.1/users/login`
+```url
+https://demo.api.synergykit.com/v2.1/users/login
+```
 
 **Curl example**
 ```text
@@ -535,7 +551,9 @@ If user will be successfully logged in, response body will contain a JSON object
 ### Retrieve an existing user by ID
 To show an individual user, send a **GET** request to
 
-`https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2`
+```url
+https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2
+```
 
 **Curl example**
 ```text
@@ -567,7 +585,9 @@ The response body will contain a JSON object.
 ### Update user
 To update user, send a **PUT** request to
 
-`https://demo.api.synergykit.com/v2.1/users/2dba8954-0c42-46d0-9dad-90f9236a4774`
+```url
+https://demo.api.synergykit.com/v2.1/users/2dba8954-0c42-46d0-9dad-90f9236a4774
+```
 
 **Curl example**
 ```text
@@ -598,7 +618,9 @@ The response body will contain a JSON object. Please notice, that the version wa
 
 ### Delete user
 To delete user, send a **DELETE** request to
-`https://demo.api.synergykit.com/v2.1/users/2dba8954-0c42-46d0-9dad-90f9236a4774`
+```url
+https://demo.api.synergykit.com/v2.1/users/2dba8954-0c42-46d0-9dad-90f9236a4774
+```
 
 **Curl example**
 ```text
@@ -612,7 +634,9 @@ The response body will contain an empty JSON object.
 
 ### Add role
 To add role to user, send a **POST** request to
-`https://demo.api.synergykit.com/v2.1/users/2dba8954-0c42-46d0-9dad-90f9236a4774/roles`
+```url
+https://demo.api.synergykit.com/v2.1/users/2dba8954-0c42-46d0-9dad-90f9236a4774/roles
+```
 
 **Curl example**
 ```text
@@ -644,7 +668,9 @@ The response body will contain a JSON object.
 
 ### Remove role
 To remove role from user, send a **DELETE** request to
-`https://demo.api.synergykit.com/v2.1/users/2dba8954-0c42-46d0-9dad-90f9236a4774/roles/pilot`
+```url
+https://demo.api.synergykit.com/v2.1/users/2dba8954-0c42-46d0-9dad-90f9236a4774/roles/pilot
+```
 
 **Curl example**
 ```text
@@ -677,7 +703,9 @@ The response body will contain a JSON object.
 Platforms are useful for pairing individual mobile devices or web applications to the user via registration ID. After assignment platform to the user you will be able to send push notifications to the device or application.
 
 To add platform to user, send a **POST** request to
-`https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms`
+```url
+https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms
+```
 
 **Curl example**
 ```text
@@ -709,7 +737,9 @@ The platform will be added to the user. Response body will contain a JSON object
 ```
 ### Retrieve platform 
 To show an individual platform user, send a **GET** request to
-`https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms/2393265f-cfee-429a-ad042fbd1b126d`
+```url
+https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms/2393265f-cfee-429a
+``-ad042fbd1b126d`
 
 **Curl example**
 ```text
@@ -735,7 +765,9 @@ The response body will contain a JSON object.
 ### Update platform
 To update platform of user, send a **PUT** request to
 
-`https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms/2393265f-cfee-429a-ad042fbd1b126d`
+```url
+https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms/2393265f-cfee-429a
+``-ad042fbd1b126d`
 
 **Curl example**
 ```text
@@ -761,7 +793,9 @@ The response body will contain a JSON object.
 
 ### Delete platform
 To remove platform of user, send a **DELETE** request to
-`https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms/2393265f-cfee-429a-ad042fbd1b126d`
+```url
+https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms/2393265f-cfee-429a
+``-ad042fbd1b126d`
 
 **Curl example**
 ```text
@@ -821,7 +855,9 @@ authData is a JSON object with keys for each linked service containing the data 
 #### Signing Up and Logging In
 Signing a user up with a linked service and logging them in with that service uses the same **POST** request, in which the authData for the user is specified. For example, to sign up or log in with a user's Facebook account:
 
-`https://demo.api.synergykit.com/v2.1/users`
+```url
+https://demo.api.synergykit.com/v2.1/users
+```
 
 **Curl Example**
 
@@ -873,7 +909,9 @@ Another way is to sending emails to your users. For this you need to create emai
 ### Send notification
 To send push notification to users, send a **POST** request to
 
-`https://demo.api.synergykit.com/v2.1/users/notification`
+```url
+https://demo.api.synergykit.com/v2.1/users/notification
+```
 
 **Curl example**
 ```text
@@ -899,7 +937,9 @@ To send email, you need to specify template first. For this example lets use the
 
 To send email, send **POST** request to 
 
-`https://demo.api.synergykit.com/v2.1/mail/example`
+```url
+https://demo.api.synergykit.com/v2.1/mail/example
+```
 
 **Curl example**
 ```text
@@ -918,7 +958,9 @@ SynergyKit can be also used for storing as much quantity of files as you need fo
 ### Upload file
 To upload a file to SynergyKit, send a **POST** request to
 
-`https://demo.api.synergykit.com/v2.1/files`
+```url
+https://demo.api.synergykit.com/v2.1/files
+```
 
 **Curl example**
 ```text
@@ -948,7 +990,9 @@ The response body will containt JSON object.
 ### Retrieve file by ID
 To retrieve a file by ID, send a **GET** request to
 
-`https://demo.api.synergykit.com/v2.1/files/62fc07ea-9123-443c-ac66-c1eaa627a4a9`
+```url
+https://demo.api.synergykit.com/v2.1/files/62fc07ea-9123-443c-ac66-c1eaa627a4a9
+```
 
 **Curl example**
 ```text
@@ -977,7 +1021,9 @@ The response body will containt JSON object.
 ### Delete file
 To delete file, send a **DELETE** request to
 
-`https://demo.api.synergykit.com/v2.1/files/62fc07ea-9123-443c-ac66-c1eaa627a4a9`
+```url
+https://demo.api.synergykit.com/v2.1/files/62fc07ea-9123-443c-ac66-c1eaa627a4a9
+```
 
 **Curl example**
 ```text
@@ -1069,7 +1115,9 @@ To run cloud code, you need to specify function first. For this example lets use
 
 To run function, send **POST** request to
 
-`https://demo.api.synergykit.com/v2.1/functions/example`
+```url
+https://demo.api.synergykit.com/v2.1/functions/example
+```
 
 **Curl example**
 ```text
@@ -1086,7 +1134,9 @@ To reduce the amount of time spent on network round trips, you can get, create, 
 ### Using batch
 Each command in a batch has id, method, endpoint, and body parameters that specify the HTTP command that would normally be used for that command. The commands are run in the order they are given. For example, to create a couple of example objects, send **POST** request to
 
-`https://demo.api.synergykit.com/v2.1/batch`
+```url
+https://demo.api.synergykit.com/v2.1/batch
+```
 
 **Curl example**
 ```text
