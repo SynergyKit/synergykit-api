@@ -84,22 +84,22 @@
   <td align="left"><a href="#remove-role">Remove role</a></td>
 </tr>
 <tr>
-  <td align="left"><code>/users/&lt;userId&gt;/platforms</code></td>
+  <td align="left"><code>/users/me/platforms</code></td>
   <td align="left">POST</td>
   <td align="left"><a href="#add-platform-to-user">Add platform to user</a></td>
 </tr>
 <tr>
-  <td align="left"><code>/users/&lt;userId&gt;/platforms/&lt;platformId&gt;</code></td>
+  <td align="left"><code>/users/me/platforms/&lt;platformId&gt;</code></td>
   <td align="left">GET</td>
   <td align="left"><a href="#retrieve-platform">Retrieve platform</a></td>
 </tr>
 <tr>
-  <td align="left"><code>/users/&lt;userId&gt;/platforms/&lt;platformId&gt;</code></td>
+  <td align="left"><code>/users/me/platforms/&lt;platformId&gt;</code></td>
   <td align="left">PUT</td>
   <td align="left"><a href="#update-platform">Update platform</a></td>
 </tr>
 <tr>
-  <td align="left"><code>/users/&lt;userId&gt;/platforms/&lt;platformId&gt;</code></td>
+  <td align="left"><code>/users/me/platforms/&lt;platformId&gt;</code></td>
   <td align="left">DELETE</td>
   <td align="left"><a href="#delete-platform">Delete platform</a></td>
 </tr>
@@ -164,8 +164,6 @@
   <td align="left"><a href="#using-batch">Using batch</a></td>
 </tr>
 </tbody></table>
-
-
 
 
 <h3 id="requests">Requests</h3>
@@ -949,40 +947,36 @@ https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/users</span></co
 
 
 
-<pre class="prettyprint"><code class="language-url hljs livecodeserver"><span class="hljs-keyword">https</span>://demo.api.synergykit.com/v2
-``<span class="hljs-number">.1</span>/users/activation/<span class="hljs-number">9</span>d555815f0265c2270a7bbf3b1ea3d4e09ac48ae?callback=<span class="hljs-keyword">https</span>://synergykit.com`
+<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2
+<span class="hljs-number">.1</span>/users/activation/<span class="hljs-number">9</span>d555815f0265c2270a7bbf3b1ea3d4e09ac48ae?callback=https://synergykit<span class="hljs-preprocessor">.com</span></code></pre>
 
-You can provide parameter callback <span class="hljs-operator">with</span> url address where you want <span class="hljs-built_in">to</span> redirect user <span class="hljs-keyword">after</span> activation.
-
-<span class="hljs-comment">### Login user</span>
-After you allow users <span class="hljs-built_in">to</span> sign up, you need <span class="hljs-built_in">to</span> let them <span class="hljs-built_in">log</span> <span class="hljs-operator">in</span> <span class="hljs-built_in">to</span> their account <span class="hljs-operator">with</span> <span class="hljs-operator">an</span> email <span class="hljs-operator">and</span> password <span class="hljs-operator">in</span> <span class="hljs-operator">the</span> future. To <span class="hljs-built_in">do</span> this, <span class="hljs-built_in">send</span> <span class="hljs-operator">a</span> POST request <span class="hljs-built_in">to</span>
-
-```url
-<span class="hljs-keyword">https</span>://demo.api.synergykit.com/v2<span class="hljs-number">.1</span>/users/login
+<p>You can provide parameter callback with url address where you want to redirect user after activation.</p>
 
 
 
+<h3 id="login-user">Login user</h3>
 
-&lt;<span class="hljs-operator">div</span> class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/<span class="hljs-operator">div</span>&gt;
-</code></pre>
+<p>After you allow users to sign up, you need to let them log in to their account with an email and password in the future. To do this, send a POST request to</p>
+
+
+
+<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/login</code></pre>
 
 <p><strong>Curl example</strong></p>
+
+
 
 <pre class="prettyprint"><code class="language-text hljs haml">curl -X POST \
 -<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Content-Type: application/json"</span> \
 </span>-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
 </span>-<span class="ruby">d <span class="hljs-string">'{"email": "anakin@tatooine.planet", "password":"test"}'</span> \
-</span>https://demo.api.synergykit.com/v2.1/users/login
-
-
-
-
-&lt;div class="se-preview-section-delimiter"&gt;&lt;/div&gt;
-</code></pre>
+</span>https://demo.api.synergykit.com/v2.1/users/login</code></pre>
 
 <p>If user will be successfully logged in, response body will contain a JSON object with user.</p>
 
 <p><strong>Response body</strong></p>
+
+
 
 <pre class="prettyprint"><code class="language-json hljs ">{
     "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"2dba8954-0c42-46d0-9dad-90f9236a4774"</span></span>,
@@ -994,42 +988,32 @@ After you allow users <span class="hljs-built_in">to</span> sign up, you need <s
     "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-number">1418145026788</span></span>,
     "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-number">1418143678670</span></span>,
     "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-}
+}</code></pre>
 
 
-
-
-&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
-</code></pre>
 
 <h3 id="retrieve-an-existing-user-by-id">Retrieve an existing user by ID</h3>
 
 <p>To show an individual user, send a <strong>GET</strong> request to</p>
 
-<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/<span class="hljs-number">65</span>fcc878-<span class="hljs-number">1</span>f87-<span class="hljs-number">478</span>f-<span class="hljs-number">851</span>e-a0aaedade8b2
 
 
-
-
-&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
-</code></pre>
+<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/<span class="hljs-number">65</span>fcc878-<span class="hljs-number">1</span>f87-<span class="hljs-number">478</span>f-<span class="hljs-number">851</span>e-a0aaedade8b2</code></pre>
 
 <p><strong>Curl example</strong></p>
 
-<pre class="prettyprint"><code class="language-text hljs avrasm">curl -<span class="hljs-built_in">X</span> GET \
--H <span class="hljs-string">"Content-Type: application/json"</span> \
--H <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
-<span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/<span class="hljs-number">65</span>fcc878-<span class="hljs-number">1</span>f87-<span class="hljs-number">478</span>f-<span class="hljs-number">851</span>e-a0aaedade8b2
 
 
-
-
-&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
-</code></pre>
+<pre class="prettyprint"><code class="language-text hljs haml">curl -X GET \
+-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Content-Type: application/json"</span> \
+</span>-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
+</span>https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2</code></pre>
 
 <p>The response body will contain a JSON object.</p>
 
 <p><strong>Response body</strong></p>
+
+
 
 <pre class="prettyprint"><code class="language-json hljs ">{
     "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
@@ -1043,42 +1027,32 @@ After you allow users <span class="hljs-built_in">to</span> sign up, you need <s
     "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-number">1418144907372</span></span>,
     "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-number">1418144907377</span></span>,
     "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"65fcc878-1f87-478f-851e-a0aaedade8b2"</span>
-</span>}
+</span>}</code></pre>
 
 
-
-
-&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
-</code></pre>
 
 <h3 id="update-user">Update user</h3>
 
 <p>To update user, send a <strong>PUT</strong> request to</p>
 
-<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/<span class="hljs-number">2</span>dba8954-<span class="hljs-number">0</span>c42-<span class="hljs-number">46</span>d0-<span class="hljs-number">9</span>dad-<span class="hljs-number">90</span>f9236a4774
 
 
-
-
-&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
-</code></pre>
+<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/<span class="hljs-number">2</span>dba8954-<span class="hljs-number">0</span>c42-<span class="hljs-number">46</span>d0-<span class="hljs-number">9</span>dad-<span class="hljs-number">90</span>f9236a4774</code></pre>
 
 <p><strong>Curl example</strong></p>
 
-<pre class="prettyprint"><code class="language-text hljs fsharp">curl -X PUT \
--H <span class="hljs-string">"Content-Type: application/json"</span> \
--H <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
--d '{<span class="hljs-string">"name"</span>: <span class="hljs-string">"Darth Vader"</span>, <span class="hljs-string">"email"</span>: <span class="hljs-string">"vader@death.star"</span>, <span class="hljs-string">"__v"</span>: <span class="hljs-number">0</span>}' \
-https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/users/2dba8954-0c42-46d0-9dad-90f9236a4774</span>
 
 
-
-
-&lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
-</code></pre>
+<pre class="prettyprint"><code class="language-text hljs haml">curl -X PUT \
+-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Content-Type: application/json"</span> \
+</span>-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
+</span>-<span class="ruby">d <span class="hljs-string">'{"name": "Darth Vader", "email": "vader@death.star", "__v": 0}'</span> \
+</span>https://demo.api.synergykit.com/v2.1/users/2dba8954-0c42-46d0-9dad-90f9236a4774</code></pre>
 
 <p>The response body will contain a JSON object. Please notice, that the version was increased by 1. <br>
 <strong>Response body</strong></p>
+
+
 
 <pre class="prettyprint"><code class="language-json hljs ">{
     "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"2dba8954-0c42-46d0-9dad-90f9236a4774"</span></span>,
@@ -1092,70 +1066,54 @@ https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/users/2dba8954-0
     "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
     "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"vader@death.star"</span></span>,
     "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Darth Vader"</span>
-</span>}
+</span>}</code></pre>
 
 
-
-
-&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
-</code></pre>
 
 <h3 id="delete-user">Delete user</h3>
 
 <p>To delete user, send a <strong>DELETE</strong> request to</p>
 
-<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/<span class="hljs-number">2</span>dba8954-<span class="hljs-number">0</span>c42-<span class="hljs-number">46</span>d0-<span class="hljs-number">9</span>dad-<span class="hljs-number">90</span>f9236a4774
 
 
-
-
-&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
-</code></pre>
+<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/<span class="hljs-number">2</span>dba8954-<span class="hljs-number">0</span>c42-<span class="hljs-number">46</span>d0-<span class="hljs-number">9</span>dad-<span class="hljs-number">90</span>f9236a4774</code></pre>
 
 <p><strong>Curl example</strong></p>
 
-<pre class="prettyprint"><code class="language-text hljs avrasm">curl -<span class="hljs-built_in">X</span> DELETE \
--H <span class="hljs-string">"Content-Type: application/json"</span> \
--H <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
-<span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/<span class="hljs-number">2</span>dba8954-<span class="hljs-number">0</span>c42-<span class="hljs-number">46</span>d0-<span class="hljs-number">9</span>dad-<span class="hljs-number">90</span>f9236a4774
 
 
-
-
-&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
-</code></pre>
+<pre class="prettyprint"><code class="language-text hljs haml">curl -X DELETE \
+-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Content-Type: application/json"</span> \
+</span>-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
+</span>https://demo.api.synergykit.com/v2.1/users/2dba8954-0c42-46d0-9dad-90f9236a4774</code></pre>
 
 <p>The response body will contain an empty JSON object.</p>
+
+
 
 <h3 id="add-role">Add role</h3>
 
 <p>To add role to user, send a <strong>POST</strong> request to</p>
 
-<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/<span class="hljs-number">2</span>dba8954-<span class="hljs-number">0</span>c42-<span class="hljs-number">46</span>d0-<span class="hljs-number">9</span>dad-<span class="hljs-number">90</span>f9236a4774/roles
 
 
-
-
-&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
-</code></pre>
+<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/<span class="hljs-number">2</span>dba8954-<span class="hljs-number">0</span>c42-<span class="hljs-number">46</span>d0-<span class="hljs-number">9</span>dad-<span class="hljs-number">90</span>f9236a4774/roles</code></pre>
 
 <p><strong>Curl example</strong></p>
+
+
 
 <pre class="prettyprint"><code class="language-text hljs haml">curl -X POST \
 -<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Content-Type: application/json"</span> \
 </span>-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
 </span>-<span class="ruby">d <span class="hljs-string">'{"role": "pilot"}'</span> \
-</span>https://demo.api.synergykit.com/v2.1/users/2dba8954-0c42-46d0-9dad-90f9236a4774/roles
-
-
-
-
-&lt;div class="se-preview-section-delimiter"&gt;&lt;/div&gt;
-</code></pre>
+</span>https://demo.api.synergykit.com/v2.1/users/2dba8954-0c42-46d0-9dad-90f9236a4774/roles</code></pre>
 
 <p>The response body will contain a JSON object.</p>
 
 <p><strong>Response body</strong></p>
+
+
 
 <pre class="prettyprint"><code class="language-json hljs ">{
     "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"2dba8954-0c42-46d0-9dad-90f9236a4774"</span></span>,
@@ -1169,42 +1127,32 @@ https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/users/2dba8954-0
     "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
     "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"vader@death.star"</span></span>,
     "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Darth Vader"</span>
-</span>}
+</span>}</code></pre>
 
 
-
-
-&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
-</code></pre>
 
 <h3 id="remove-role">Remove role</h3>
 
 <p>To remove role from user, send a <strong>DELETE</strong> request to</p>
 
-<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/<span class="hljs-number">2</span>dba8954-<span class="hljs-number">0</span>c42-<span class="hljs-number">46</span>d0-<span class="hljs-number">9</span>dad-<span class="hljs-number">90</span>f9236a4774/roles/pilot
 
 
-
-
-&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
-</code></pre>
+<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/<span class="hljs-number">2</span>dba8954-<span class="hljs-number">0</span>c42-<span class="hljs-number">46</span>d0-<span class="hljs-number">9</span>dad-<span class="hljs-number">90</span>f9236a4774/roles/pilot</code></pre>
 
 <p><strong>Curl example</strong></p>
 
-<pre class="prettyprint"><code class="language-text hljs avrasm">curl -<span class="hljs-built_in">X</span> DELETE \
--H <span class="hljs-string">"Content-Type: application/json"</span> \
--H <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
-<span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/<span class="hljs-number">2</span>dba8954-<span class="hljs-number">0</span>c42-<span class="hljs-number">46</span>d0-<span class="hljs-number">9</span>dad-<span class="hljs-number">90</span>f9236a4774/roles/pilot
 
 
-
-
-&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
-</code></pre>
+<pre class="prettyprint"><code class="language-text hljs haml">curl -X DELETE \
+-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Content-Type: application/json"</span> \
+</span>-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
+</span>https://demo.api.synergykit.com/v2.1/users/2dba8954-0c42-46d0-9dad-90f9236a4774/roles/pilot</code></pre>
 
 <p>The response body will contain a JSON object.</p>
 
 <p><strong>Response body</strong></p>
+
+
 
 <pre class="prettyprint"><code class="language-json hljs ">{
     "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"2dba8954-0c42-46d0-9dad-90f9236a4774"</span></span>,
@@ -1218,13 +1166,9 @@ https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/users/2dba8954-0
     "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
     "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"vader@death.star"</span></span>,
     "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Darth Vader"</span>
-</span>}
+</span>}</code></pre>
 
 
-
-
-&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
-</code></pre>
 
 <h3 id="add-platform-to-user">Add platform to user</h3>
 
@@ -1232,27 +1176,19 @@ https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/users/2dba8954-0
 
 <p>To add platform to user, send a <strong>POST</strong> request to</p>
 
-<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/<span class="hljs-number">65</span>fcc878-<span class="hljs-number">1</span>f87-<span class="hljs-number">478</span>f-<span class="hljs-number">851</span>e-a0aaedade8b2/platforms
 
 
-
-
-&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
-</code></pre>
+<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/me/platforms</code></pre>
 
 <p><strong>Curl example</strong></p>
+
+
 
 <pre class="prettyprint"><code class="language-text hljs haml">curl -X POST \
 -<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Content-Type: application/json"</span> \
 </span>-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
 </span>-<span class="ruby">d <span class="hljs-string">'{"platformName": "android", "registrationId": "1234ABCD5678"}'</span> \
-</span>https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms
-
-
-
-
-&lt;div class="se-preview-section-delimiter"&gt;&lt;/div&gt;
-</code></pre>
+</span>https://demo.api.synergykit.com/v2.1/users/me/platforms</code></pre>
 
 <table>
 <thead>
@@ -1294,39 +1230,28 @@ https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/users/2dba8954-0
     "<span class="hljs-attribute">development</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
     "<span class="hljs-attribute">registrationId</span>": <span class="hljs-value"><span class="hljs-string">"1234ABCD5678"</span></span>,
     "<span class="hljs-attribute">platformName</span>": <span class="hljs-value"><span class="hljs-string">"android"</span>
-</span>}
+</span>}</code></pre>
 
 
-
-
-&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
-</code></pre>
 
 <h3 id="retrieve-platform">Retrieve platform</h3>
 
 <p>To show an individual platform user, send a <strong>GET</strong> request to</p>
 
-<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/<span class="hljs-number">65</span>fcc878-<span class="hljs-number">1</span>f87-<span class="hljs-number">478</span>f-<span class="hljs-number">851</span>e-a0aaedade8b2/platforms/<span class="hljs-number">2393265</span>f-cfee-<span class="hljs-number">429</span>a
-``-ad042fbd1b126d`
+<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/me/platforms/<span class="hljs-number">2393265</span>f-cfee-<span class="hljs-number">429</span>a-ad042fbd1b126d</code></pre>
 
-**Curl example**
-
+<p><strong>Curl example</strong></p>
 
 
 
-&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
-
-```text
-curl -<span class="hljs-built_in">X</span> GET \
--H <span class="hljs-string">"Content-Type: application/json"</span> \
--H <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
-<span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/<span class="hljs-number">65</span>fcc878-<span class="hljs-number">1</span>f87-<span class="hljs-number">478</span>f-<span class="hljs-number">851</span>e-a0aaedade8b2/platforms/<span class="hljs-number">2393265</span>f-cfee-<span class="hljs-number">429</span>a-ad04-<span class="hljs-number">3</span>d2fbd1b126d</code></pre>
+<pre class="prettyprint"><code class="language-text hljs haml">curl -X GET \
+-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Content-Type: application/json"</span> \
+</span>-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
+</span>https://demo.api.synergykit.com/v2.1/users/me/platforms/2393265f-cfee-429a-ad04-3d2fbd1b126d</code></pre>
 
 <p>The response body will contain a JSON object.</p>
 
 <p><strong>Response body</strong></p>
-
-
 
 <pre class="prettyprint"><code class="language-json hljs ">{
     "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
@@ -1344,15 +1269,34 @@ curl -<span class="hljs-built_in">X</span> GET \
 
 
 
+<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/me/platforms/<span class="hljs-number">2393265</span>f-cfee-<span class="hljs-number">429</span>a-ad042fbd1b126d</code></pre>
+
+<p><strong>Curl example</strong></p>
+
+<pre class="prettyprint"><code class="language-text hljs haml">curl -X PUT \
+-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Content-Type: application/json"</span> \
+</span>-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
+</span>-<span class="ruby">d <span class="hljs-string">'{"development": true}'</span> \
+</span>https://demo.api.synergykit.com/v2.1/users/me/platforms/2393265f-cfee-429a-ad04-3d2fbd1b126d</code></pre>
+
+<p>The response body will contain a JSON object.</p>
+
+<p><strong>Response body</strong></p>
+
+<h3 id="delete-platform">Delete platform</h3>
+
+<p>To remove platform of user, send a <strong>DELETE</strong> request to</p>
+
+
+
 <pre class="prettyprint"><code class="language-url hljs lasso">https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms/2393265f-cfee-429a</span>
 <span class="hljs-string">``</span><span class="hljs-attribute">-ad042fbd1b126d</span><span class="hljs-string">`
 
 **Curl example**
 `</span><span class="hljs-string">``</span>text
-curl <span class="hljs-attribute">-X</span> PUT <span class="hljs-subst">\</span>
+curl <span class="hljs-attribute">-X</span> DELETE <span class="hljs-subst">\</span>
 <span class="hljs-attribute">-H</span> <span class="hljs-string">"Content-Type: application/json"</span> <span class="hljs-subst">\</span>
 <span class="hljs-attribute">-H</span> <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> <span class="hljs-subst">\</span>
-<span class="hljs-attribute">-d</span> <span class="hljs-string">'{"development": true}'</span> <span class="hljs-subst">\</span>
 https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms/2393265f-cfee-429a-ad04-3d2fbd1b126d</span>
 
 
@@ -1361,16 +1305,21 @@ https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/users/65fcc878-1
 <span class="hljs-subst">&lt;</span>div class<span class="hljs-subst">=</span><span class="hljs-string">"se-preview-section-delimiter"</span><span class="hljs-subst">&gt;&lt;</span>/div<span class="hljs-subst">&gt;</span>
 </code></pre>
 
-<p>The response body will contain a JSON object.</p>
+<p>The response body will contain an empty JSON object.</p>
 
-<p><strong>Response body</strong></p>
+<h3 id="linking-users">Linking users</h3>
+
+<p>SynergyKit allows you to link your users with services like Twitter, Facebook and Google+, enabling your users to sign up or log into your application using their existing identities. This is accomplished through the sign-up REST endpoint by providing authentication data for the service you wish to link to a user in the authData field. Once your user is associated with a service, the authData for the service will be stored with the user and is retrievable by logging in.</p>
+
+<p>authData is a JSON object with keys for each linked service containing the data below. In each case, you are responsible for completing the authentication flow (e.g. OAuth 1.0a) to obtain the information the the service requires for linking.</p>
+
+<h4 id="facebook-authdata">Facebook authData</h4>
 
 <pre class="prettyprint"><code class="language-json hljs ">{
-    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"2393265f-cfee-429a-ad04-3d2fbd1b126d"</span></span>,
-    "<span class="hljs-attribute">development</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-    "<span class="hljs-attribute">registrationId</span>": <span class="hljs-value"><span class="hljs-string">"1234ABCD5678"</span></span>,
-    "<span class="hljs-attribute">platformName</span>": <span class="hljs-value"><span class="hljs-string">"android"</span>
+    "<span class="hljs-attribute">facebook</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"user's Facebook id number as a string"</span></span>,
+        "<span class="hljs-attribute">access_token</span>": <span class="hljs-value"><span class="hljs-string">"an authorized Facebook access token for the user"</span>
+    </span>}
 </span>}
 
 
@@ -1379,31 +1328,577 @@ https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/users/65fcc878-1
 &lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
 </code></pre>
 
-<h3 id="delete-platform">Delete platform</h3>
+<h4 id="twitter-authdata">Twitter authData</h4>
 
-<p>To remove platform of user, send a <strong>DELETE</strong> request to</p>
-
-<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/<span class="hljs-number">65</span>fcc878-<span class="hljs-number">1</span>f87-<span class="hljs-number">478</span>f-<span class="hljs-number">851</span>e-a0aaedade8b2/platforms/<span class="hljs-number">2393265</span>f-cfee-<span class="hljs-number">429</span>a
-``-ad042fbd1b126d`
-
-**Curl example**
+<pre class="prettyprint"><code class="language-json hljs ">{
+    "<span class="hljs-attribute">twitter</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"user's Twitter id number as a string"</span></span>,
+        "<span class="hljs-attribute">screen_name</span>": <span class="hljs-value"><span class="hljs-string">"user's Twitter screen name"</span></span>,
+        "<span class="hljs-attribute">consumer_key</span>": <span class="hljs-value"><span class="hljs-string">"your application's consumer key"</span></span>,
+        "<span class="hljs-attribute">consumer_secret</span>": <span class="hljs-value"><span class="hljs-string">"your application's consumer secret"</span></span>,
+        "<span class="hljs-attribute">auth_token</span>": <span class="hljs-value"><span class="hljs-string">"an authorized Twitter token for the user with your application"</span></span>,
+        "<span class="hljs-attribute">auth_token_secret</span>": <span class="hljs-value"><span class="hljs-string">"the secret associated with the auth_token"</span>
+    </span>}
+</span>}
 
 
 
 
 &lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
+</code></pre>
 
-```text
-curl -<span class="hljs-built_in">X</span> DELETE \
+<h4 id="google-authdata">Google+ authData</h4>
+
+<pre class="prettyprint"><code class="language-json hljs ">{
+    "<span class="hljs-attribute">google</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"user's Google+ id number as a string"</span>
+    </span>}
+</span>}
+
+
+
+
+&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
+</code></pre>
+
+<h4 id="anonymous-authdata">Anonymous authData</h4>
+
+<pre class="prettyprint"><code class="language-json hljs ">{
+    "<span class="hljs-attribute">anonymous</span>": <span class="hljs-value">{}
+</span>}
+
+
+
+
+&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
+</code></pre>
+
+<h4 id="signing-up-and-logging-in">Signing Up and Logging In</h4>
+
+<p>Signing a user up with a linked service and logging them in with that service uses the same <strong>POST</strong> request, in which the authData for the user is specified. For example, to sign up or log in with a user’s Facebook account:</p>
+
+<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users
+
+
+
+
+&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
+</code></pre>
+
+<p><strong>Curl Example</strong></p>
+
+<pre class="prettyprint"><code class="language-text hljs fsharp">curl -X POST \
 -H <span class="hljs-string">"Content-Type: application/json"</span> \
 -H <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
-<span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/<span class="hljs-number">65</span>fcc878-<span class="hljs-number">1</span>f87-<span class="hljs-number">478</span>f-<span class="hljs-number">851</span>e-a0aaedade8b2/platforms/<span class="hljs-number">2393265</span>f-cfee-<span class="hljs-number">429</span>a-ad04-<span class="hljs-number">3</span>d2fbd1b126d</code></pre>
+-d '{
+    <span class="hljs-string">"authData"</span>: {
+        <span class="hljs-string">"facebook"</span>: {
+                <span class="hljs-string">"id"</span>: <span class="hljs-string">"12345678"</span>,
+                <span class="hljs-string">"access_token"</span>: <span class="hljs-string">"zIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwY"</span>,
+            }
+        }
+    }' \
+https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/users</span>
+
+
+
+
+&lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
+</code></pre>
+
+<p>The new user or logged user will be returned.</p>
+
+<p><strong>Response body</strong></p>
+
+<pre class="prettyprint"><code class="language-json hljs ">{
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"2dba8954-0c42-46d0-9dad-90f9236a4774"</span></span>,
+    "<span class="hljs-attribute">isActivated</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">sessionToken</span>": <span class="hljs-value"><span class="hljs-string">"QxNi1iMzEwYWQzMmQyOGzowMzIwN"</span></span>,
+    "<span class="hljs-attribute">platforms</span>": <span class="hljs-value">[]</span>,
+    "<span class="hljs-attribute">roles</span>": <span class="hljs-value">[]</span>,
+    "<span class="hljs-attribute">authData</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">facebook</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"12345678"</span></span>,
+            "<span class="hljs-attribute">access_token</span>": <span class="hljs-value"><span class="hljs-string">"zIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwY"</span></span>,
+        }
+    </span>}</span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-number">1418145026788</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-number">1418143678670</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+}
+
+
+
+
+&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
+</code></pre>
+
+<h2 id="communication">Communication</h2>
+
+<p>In SynergyKit you can communicate with your users by different ways. There are listed some methods below this section.</p>
+
+<p>One way is to sending push notifications into user devices. This action need to have filled your API key for Android devices in Settings, section Android. For push notifications into iOS devices you need to fill your password and certificates into Apple section in Settings.</p>
+
+<p>Another way is to sending emails to your users. For this you need to create email templates in administration under Mailing section.</p>
+
+<h3 id="send-notification">Send notification</h3>
+
+<p>To send push notification to users, send a <strong>POST</strong> request to</p>
+
+<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/notification
+
+
+
+
+&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
+</code></pre>
+
+<p><strong>Curl example</strong></p>
+
+<pre class="prettyprint"><code class="language-text hljs haml">curl -X POST \
+-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Content-Type: application/json"</span> \
+</span>-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
+</span>-<span class="ruby">d <span class="hljs-string">'{"userIds": "65fcc878-1f87-478f-851e-a0aaedade8b2", "alert": "Use the force!"}'</span> \
+</span>https://demo.api.synergykit.com/v2.1/users/notification
+
+
+
+
+&lt;div class="se-preview-section-delimiter"&gt;&lt;/div&gt;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+  <th align="left">Parameter</th>
+  <th align="left">Type</th>
+  <th>Description</th>
+  <th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+  <td align="left">userIds</td>
+  <td align="left">String or Array of Strings</td>
+  <td>IDs of user(s) which you want send push notification.</td>
+  <td align="left"><strong>required</strong></td>
+</tr>
+<tr>
+  <td align="left">alert</td>
+  <td align="left">String</td>
+  <td>Message which will be shown in notification bar.</td>
+  <td align="left"></td>
+</tr>
+<tr>
+  <td align="left">sound</td>
+  <td align="left">String</td>
+  <td>Sound to play on target device. (Works on iOS devices only).</td>
+  <td align="left"></td>
+</tr>
+<tr>
+  <td align="left">badge</td>
+  <td align="left">String</td>
+  <td>The number which will be shown in badge. (Works on iOS devices only).</td>
+  <td align="left"></td>
+</tr>
+<tr>
+  <td align="left">payload</td>
+  <td align="left">String</td>
+  <td>Additional data. (Works on iOS devices only).</td>
+  <td align="left"></td>
+</tr>
+</tbody></table>
+
 
 <p>The response body will contain an empty JSON object.</p>
 
+<h3 id="send-e-mail">Send e-mail</h3>
+
+<p>To send email, you need to specify template first. For this example lets use the prepared template in administration called Example, under section Mailing.</p>
+
+<p>To send email, send <strong>POST</strong> request to </p>
+
+<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/mail/example
 
 
-<h3 id="linking-users">Linking users</h3>
+
+
+&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
+</code></pre>
+
+<p><strong>Curl example</strong></p>
+
+<pre class="prettyprint"><code class="language-text hljs fsharp">curl -X POST \
+-H <span class="hljs-string">"Content-Type: application/json"</span> \
+-H <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
+-d '{<span class="hljs-string">"subject"</span>: <span class="hljs-string">"Hello Anakin"</span>, <span class="hljs-string">"email"</span>: <span class="hljs-string">"anakin@tatooine.planet"</span>, <span class="hljs-string">"name"</span>: <span class="hljs-string">"Anakin"</span>}' \
+https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/mail/example</span>
+
+
+
+
+&lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
+</code></pre>
+
+<p>The response body will contain an empty JSON object.</p>
+
+<h2 id="files">Files</h2>
+
+<p>SynergyKit can be also used for storing as much quantity of files as you need for your application.</p>
+
+<h3 id="upload-file">Upload file</h3>
+
+<p>To upload a file to SynergyKit, send a <strong>POST</strong> request to</p>
+
+<pre class="prettyprint"><code class="language-url hljs livecodeserver"><span class="hljs-keyword">https</span>://demo.api.synergykit.com/v2<span class="hljs-number">.1</span>/<span class="hljs-built_in">files</span>
+
+
+
+
+&lt;<span class="hljs-operator">div</span> class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/<span class="hljs-operator">div</span>&gt;
+</code></pre>
+
+<p><strong>Curl example</strong></p>
+
+<pre class="prettyprint"><code class="language-text hljs haml">curl -X POST \
+-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Content-Type: multipart/form-data"</span> \
+</span>-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
+</span>-<span class="ruby"><span class="hljs-constant">F</span> <span class="hljs-string">"filedata=@test_image.jpg"</span> \
+</span>https://demo.api.synergykit.com/v2.1/files
+
+
+
+
+&lt;div class="se-preview-section-delimiter"&gt;&lt;/div&gt;
+</code></pre>
+
+<p>The response body will containt JSON object.</p>
+
+<pre class="prettyprint"><code class="language-json hljs ">{
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-number">294119</span></span>,
+    "<span class="hljs-attribute">extension</span>": <span class="hljs-value"><span class="hljs-string">"jpg"</span></span>,
+    "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"https://synergykit.blob.core.windows.net/demo/ad2806dc5d9f5f86656c43cd95156bcf.jpg"</span></span>,
+    "<span class="hljs-attribute">filename</span>": <span class="hljs-value"><span class="hljs-string">"ad2806dc5d9f5f86656c43cd95156bcf.jpg"</span></span>,
+    "<span class="hljs-attribute">applicationUrl</span>": <span class="hljs-value"><span class="hljs-string">"demo"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-number">1421507284342</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-number">1421507284342</span></span>,
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"62fc07ea-9123-443c-ac66-c1eaa627a4a9"</span>
+</span>}
+
+
+
+
+&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
+</code></pre>
+
+<h3 id="retrieve-file-by-id">Retrieve file by ID</h3>
+
+<p>To retrieve a file by ID, send a <strong>GET</strong> request to</p>
+
+<pre class="prettyprint"><code class="language-url hljs livecodeserver"><span class="hljs-keyword">https</span>://demo.api.synergykit.com/v2<span class="hljs-number">.1</span>/<span class="hljs-built_in">files</span>/<span class="hljs-number">62</span>fc07ea-<span class="hljs-number">9123</span>-<span class="hljs-number">443</span>c-ac66-c1eaa627a4a9
+
+
+
+
+&lt;<span class="hljs-operator">div</span> class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/<span class="hljs-operator">div</span>&gt;
+</code></pre>
+
+<p><strong>Curl example</strong></p>
+
+<pre class="prettyprint"><code class="language-text hljs livecodeserver">curl -X GET \
+-H <span class="hljs-string">"Content-Type: application/json"</span> \
+-H <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
+<span class="hljs-keyword">https</span>://demo.api.synergykit.com/v2<span class="hljs-number">.1</span>/<span class="hljs-built_in">files</span>/<span class="hljs-number">62</span>fc07ea-<span class="hljs-number">9123</span>-<span class="hljs-number">443</span>c-ac66-c1eaa627a4a9
+
+
+
+
+&lt;<span class="hljs-operator">div</span> class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/<span class="hljs-operator">div</span>&gt;
+</code></pre>
+
+<p>The response body will containt JSON object.</p>
+
+<pre class="prettyprint"><code class="language-json hljs ">{
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-number">294119</span></span>,
+    "<span class="hljs-attribute">extension</span>": <span class="hljs-value"><span class="hljs-string">"jpg"</span></span>,
+    "<span class="hljs-attribute">path</span>": <span class="hljs-value"><span class="hljs-string">"https://synergykit.blob.core.windows.net/demo/ad2806dc5d9f5f86656c43cd95156bcf.jpg"</span></span>,
+    "<span class="hljs-attribute">filename</span>": <span class="hljs-value"><span class="hljs-string">"ad2806dc5d9f5f86656c43cd95156bcf.jpg"</span></span>,
+    "<span class="hljs-attribute">applicationUrl</span>": <span class="hljs-value"><span class="hljs-string">"demo"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-number">1421507284342</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-number">1421507284342</span></span>,
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"62fc07ea-9123-443c-ac66-c1eaa627a4a9"</span>
+</span>}
+
+
+
+
+&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
+</code></pre>
+
+<h3 id="delete-file">Delete file</h3>
+
+<p>To delete file, send a <strong>DELETE</strong> request to</p>
+
+<pre class="prettyprint"><code class="language-url hljs livecodeserver"><span class="hljs-keyword">https</span>://demo.api.synergykit.com/v2<span class="hljs-number">.1</span>/<span class="hljs-built_in">files</span>/<span class="hljs-number">62</span>fc07ea-<span class="hljs-number">9123</span>-<span class="hljs-number">443</span>c-ac66-c1eaa627a4a9
+
+
+
+
+&lt;<span class="hljs-operator">div</span> class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/<span class="hljs-operator">div</span>&gt;
+</code></pre>
+
+<p><strong>Curl example</strong></p>
+
+<pre class="prettyprint"><code class="language-text hljs livecodeserver">curl -X DELETE \
+-H <span class="hljs-string">"Content-Type: application/json"</span> \
+-H <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
+<span class="hljs-keyword">https</span>://demo.api.synergykit.com/v2<span class="hljs-number">.1</span>/<span class="hljs-built_in">files</span>/<span class="hljs-number">62</span>fc07ea-<span class="hljs-number">9123</span>-<span class="hljs-number">443</span>c-ac66-c1eaa627a4a9
+
+
+
+
+&lt;<span class="hljs-operator">div</span> class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/<span class="hljs-operator">div</span>&gt;
+</code></pre>
+
+<p>The response body will contain an empty JSON object.</p>
+
+<h2 id="cloud-code">Cloud Code</h2>
+
+<p>Our vision is to let developers build any app without dealing with servers. For complex apps, sometimes you just need a bit of logic that isn’t running on a mobile device. Cloud Code makes this possible.</p>
+
+<p><strong>Cloud Code example</strong></p>
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-comment">// Create instance of Data object and as first parameter specify the collection where to save</span>
+<span class="hljs-keyword">var</span> spaceShip = Synergykit.Data(<span class="hljs-string">"SpaceShips"</span>);
+
+<span class="hljs-comment">// Set any properities you want</span>
+spaceShip.set(<span class="hljs-string">"type"</span>, <span class="hljs-string">"Star Fighter"</span>);
+spaceShip.set(<span class="hljs-string">"code"</span>, <span class="hljs-string">"ARC-170"</span>);
+spaceShip.set(<span class="hljs-string">"description"</span>, <span class="hljs-string">"Protecting the skies over Republic worlds were specialized clone fighter forces flying the latest in starfighter technology."</span>);
+
+<span class="hljs-comment">// And save data to SynergyKit</span>
+spaceShip.save({
+    success: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(spaceShip, statusCode)</span> {</span>
+        callback(spaceShip);
+    },
+    error: callback
+});
+
+
+
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"se-preview-section-delimiter"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</span></code></pre>
+
+<p>In Cloud Code there are some prepare functions to work with.</p>
+
+<table>
+<thead>
+<tr>
+  <th align="left">Function</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td align="left"><code>log(message)</code></td>
+  <td>Save message to logs in administration and also in console</td>
+</tr>
+<tr>
+  <td align="left"><code>console.log(message)</code></td>
+  <td>Log message in console</td>
+</tr>
+<tr>
+  <td align="left"><code>callback(result, statusCode)</code></td>
+  <td>Return <code>result</code> in response with <code>statusCode</code> defined. By default, <code>result</code> is <code>{}</code> and <code>statusCode</code> is <code>200</code></td>
+</tr>
+<tr>
+  <td align="left"><code>require(module)</code></td>
+  <td>Require availible modules listed below</td>
+</tr>
+</tbody></table>
+
+
+<p>You have also access to request body in variable params or parameters.</p>
+
+<h3 id="modules">Modules</h3>
+
+<p>Cloud Code runs in the Node.js jailed sandbox and uses strict JavaScript language with some prepared modules and variables, which you can use for your development. You have access to Node.js SDK in Cloud Code and modules which can be require.</p>
+
+<h4 id="momentjs">Moment.js</h4>
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-keyword">var</span> moment = <span class="hljs-built_in">require</span>(<span class="hljs-string">'moment'</span>);
+callback(moment);
+
+
+
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"se-preview-section-delimiter"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</span></code></pre>
+
+<h4 id="request">Request</h4>
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-keyword">var</span> request = <span class="hljs-built_in">require</span>(<span class="hljs-string">'request'</span>);
+request.get({
+    uri: <span class="hljs-string">"https://demo.api.synergykit.com/v2.1"</span>
+}, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, response, result)</span> {</span>
+    callback(result)
+})
+
+
+
+
+
+&lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</span></code></pre>
+
+<h4 id="underscorejs">Underscore.js</h4>
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-keyword">var</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">"underscore"</span>);
+callback(_.isString(params.name));
+
+
+
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"se-preview-section-delimiter"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</span></code></pre>
+
+<h4 id="urlify">Urlify</h4>
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-keyword">var</span> urlify = <span class="hljs-built_in">require</span>(<span class="hljs-string">"urlify"</span>).create({
+    spaces: <span class="hljs-string">"-"</span>,
+    nonPrintable: <span class="hljs-string">"-"</span>,
+    toLower: <span class="hljs-literal">true</span>,
+    trim: <span class="hljs-literal">true</span>
+});
+callback(urlify(params.fullname));
+
+
+
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"se-preview-section-delimiter"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</span></code></pre>
+
+<h3 id="run-cloud-code">Run cloud code</h3>
+
+<p>To run cloud code, you need to specify function first. For this example lets use the prepared function in administration called Example, under section Cloud Code.</p>
+
+<p>To run function, send <strong>POST</strong> request to</p>
+
+<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/functions/example
+
+
+
+
+&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
+</code></pre>
+
+<p><strong>Curl example</strong></p>
+
+<pre class="prettyprint"><code class="language-text hljs avrasm">curl -<span class="hljs-built_in">X</span> POST \
+-H <span class="hljs-string">"Content-Type: application/json"</span> \
+-H <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
+<span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/functions/example
+
+
+
+
+&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
+</code></pre>
+
+<p>Response will be JSON object sent in callback function.</p>
+
+<h2 id="batch-request">Batch request</h2>
+
+<p>To reduce the amount of time spent on network round trips, you can get, create, update, or delete up to 50 objects in one call, using the batch endpoint.</p>
+
+<h3 id="using-batch">Using batch</h3>
+
+<p>Each command in a batch has id, method, endpoint, and body parameters that specify the HTTP command that would normally be used for that command. The commands are run in the order they are given. For example, to create a couple of example objects, send <strong>POST</strong> request to</p>
+
+<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/batch
+
+
+
+
+&lt;div class=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
+</code></pre>
+
+<p><strong>Curl example</strong></p>
+
+<pre class="prettyprint"><code class="language-text hljs fsharp">curl -X POST \
+-H <span class="hljs-string">"Content-Type: application/json"</span> \
+-H <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
+-d '[
+        {
+            <span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-string">"method"</span>: <span class="hljs-string">"POST"</span>,
+            <span class="hljs-string">"endpoint"</span>: <span class="hljs-string">"/data/example"</span>,
+            <span class="hljs-string">"body"</span>: {
+                <span class="hljs-string">"name"</span>: <span class="hljs-string">"Anakin Skywalker"</span>,
+                <span class="hljs-string">"lightsaber"</span>: <span class="hljs-string">"blue"</span>
+            }
+        },
+        {
+            <span class="hljs-string">"id"</span>: <span class="hljs-number">2</span>,
+            <span class="hljs-string">"method"</span>: <span class="hljs-string">"POST"</span>,
+            <span class="hljs-string">"endpoint"</span>: <span class="hljs-string">"/data/example"</span>,
+            <span class="hljs-string">"body"</span>: {
+                <span class="hljs-string">"name"</span>: <span class="hljs-string">"Darth Vader"</span>,
+                <span class="hljs-string">"lightsaber"</span>: <span class="hljs-string">"red"</span>
+            }
+        }
+    ]' \
+https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/batch</span>
+
+
+
+
+&lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">"se-preview-section-delimiter"</span>&gt;&lt;/div&gt;
+</code></pre>
+
+<p>Response will be array of JSON objects.</p>
+
+<pre class="prettyprint"><code class="language-json hljs ">[{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">statusCode</span>": <span class="hljs-value"><span class="hljs-number">200</span></span>,
+    "<span class="hljs-attribute">body</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-number">1430312287559</span></span>,
+        "<span class="hljs-attribute">user_ids</span>": <span class="hljs-value">[<span class="hljs-string">"anonymous"</span>]</span>,
+        "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"12a09916-16d9-427c-8eff-be0d4b68777e"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Anakin Skywalker"</span></span>,
+        "<span class="hljs-attribute">lightsaber</span>": <span class="hljs-value"><span class="hljs-string">"blue"</span></span>,
+        "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-number">1430312287559</span>
+    </span>}
+</span>}, {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+    "<span class="hljs-attribute">statusCode</span>": <span class="hljs-value"><span class="hljs-number">200</span></span>,
+    "<span class="hljs-attribute">body</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-number">1430312288499</span></span>,
+        "<span class="hljs-attribute">user_ids</span>": <span class="hljs-value">[<span class="hljs-string">"anonymous"</span>]</span>,
+        "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"8cc3079b-40e2-4e1a-95d1-e7b97f216c60"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Darth Vader"</span></span>,
+        "<span class="hljs-attribute">lightsaber</span>": <span class="hljs-value"><span class="hljs-string">"red"</span></span>,
+        "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-number">1430312288499</span>
+    </span>}
+</span>}]</code></pre>
+
+<pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/users/me/platforms/<span class="hljs-number">2393265</span>f-cfee-<span class="hljs-number">429</span>a-ad042fbd1b126d</code></pre>
+
+<p><strong>Curl example</strong></p>
+
+
+
+<pre class="prettyprint"><code class="language-text hljs haml">curl -X DELETE \
+-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Content-Type: application/json"</span> \
+</span>-<span class="ruby"><span class="hljs-constant">H</span> <span class="hljs-string">"Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI="</span> \
+</span>https://demo.api.synergykit.com/v2.1/users/me/platforms/2393265f-cfee-429a-ad04-3d2fbd1b126d</code></pre>
+
+<p>The response body will contain an empty JSON object.</p>
+
+<h3 id="linking-users-1">Linking users</h3>
 
 <p>SynergyKit allows you to link your users with services like Twitter, Facebook and Google+, enabling your users to sign up or log into your application using their existing identities. This is accomplished through the sign-up REST endpoint by providing authentication data for the service you wish to link to a user in the authData field. Once your user is associated with a service, the authData for the service will be stored with the user and is retrievable by logging in.</p>
 
@@ -1411,7 +1906,7 @@ curl -<span class="hljs-built_in">X</span> DELETE \
 
 
 
-<h4 id="facebook-authdata">Facebook authData</h4>
+<h4 id="facebook-authdata-1">Facebook authData</h4>
 
 
 
@@ -1424,7 +1919,7 @@ curl -<span class="hljs-built_in">X</span> DELETE \
 
 
 
-<h4 id="twitter-authdata">Twitter authData</h4>
+<h4 id="twitter-authdata-1">Twitter authData</h4>
 
 
 
@@ -1441,7 +1936,7 @@ curl -<span class="hljs-built_in">X</span> DELETE \
 
 
 
-<h4 id="google-authdata">Google+ authData</h4>
+<h4 id="google-authdata-1">Google+ authData</h4>
 
 
 
@@ -1453,7 +1948,7 @@ curl -<span class="hljs-built_in">X</span> DELETE \
 
 
 
-<h4 id="anonymous-authdata">Anonymous authData</h4>
+<h4 id="anonymous-authdata-1">Anonymous authData</h4>
 
 
 
@@ -1463,7 +1958,7 @@ curl -<span class="hljs-built_in">X</span> DELETE \
 
 
 
-<h4 id="signing-up-and-logging-in">Signing Up and Logging In</h4>
+<h4 id="signing-up-and-logging-in-1">Signing Up and Logging In</h4>
 
 <p>Signing a user up with a linked service and logging them in with that service uses the same <strong>POST</strong> request, in which the authData for the user is specified. For example, to sign up or log in with a user’s Facebook account:</p>
 
@@ -1513,7 +2008,7 @@ https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/users</span></co
 
 
 
-<h2 id="communication">Communication</h2>
+<h2 id="communication-1">Communication</h2>
 
 <p>In SynergyKit you can communicate with your users by different ways. There are listed some methods below this section.</p>
 
@@ -1523,7 +2018,7 @@ https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/users</span></co
 
 
 
-<h3 id="send-notification">Send notification</h3>
+<h3 id="send-notification-1">Send notification</h3>
 
 <p>To send push notification to users, send a <strong>POST</strong> request to</p>
 
@@ -1587,7 +2082,7 @@ https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/users</span></co
 
 
 
-<h3 id="send-e-mail">Send e-mail</h3>
+<h3 id="send-e-mail-1">Send e-mail</h3>
 
 <p>To send email, you need to specify template first. For this example lets use the prepared template in administration called Example, under section Mailing.</p>
 
@@ -1611,13 +2106,13 @@ https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/mail/example</sp
 
 
 
-<h2 id="files">Files</h2>
+<h2 id="files-1">Files</h2>
 
 <p>SynergyKit can be also used for storing as much quantity of files as you need for your application.</p>
 
 
 
-<h3 id="upload-file">Upload file</h3>
+<h3 id="upload-file-1">Upload file</h3>
 
 <p>To upload a file to SynergyKit, send a <strong>POST</strong> request to</p>
 
@@ -1653,7 +2148,7 @@ https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/mail/example</sp
 
 
 
-<h3 id="retrieve-file-by-id">Retrieve file by ID</h3>
+<h3 id="retrieve-file-by-id-1">Retrieve file by ID</h3>
 
 <p>To retrieve a file by ID, send a <strong>GET</strong> request to</p>
 
@@ -1688,7 +2183,7 @@ https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/mail/example</sp
 
 
 
-<h3 id="delete-file">Delete file</h3>
+<h3 id="delete-file-1">Delete file</h3>
 
 <p>To delete file, send a <strong>DELETE</strong> request to</p>
 
@@ -1709,7 +2204,7 @@ https:<span class="hljs-comment">//demo.api.synergykit.com/v2.1/mail/example</sp
 
 
 
-<h2 id="cloud-code">Cloud Code</h2>
+<h2 id="cloud-code-1">Cloud Code</h2>
 
 <p>Our vision is to let developers build any app without dealing with servers. For complex apps, sometimes you just need a bit of logic that isn’t running on a mobile device. Cloud Code makes this possible.</p>
 
@@ -1765,13 +2260,13 @@ spaceShip.save({
 
 
 
-<h3 id="modules">Modules</h3>
+<h3 id="modules-1">Modules</h3>
 
 <p>Cloud Code runs in the Node.js jailed sandbox and uses strict JavaScript language with some prepared modules and variables, which you can use for your development. You have access to Node.js SDK in Cloud Code and modules which can be require.</p>
 
 
 
-<h4 id="momentjs">Moment.js</h4>
+<h4 id="momentjs-1">Moment.js</h4>
 
 
 
@@ -1780,7 +2275,7 @@ callback(moment);</code></pre>
 
 
 
-<h4 id="request">Request</h4>
+<h4 id="request-1">Request</h4>
 
 
 
@@ -1789,12 +2284,9 @@ request.get({
     uri: <span class="hljs-string">"https://demo.api.synergykit.com/v2.1"</span>
 }, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, response, result)</span> {</span>
     callback(result)
-})
-</code></pre>
+})</code></pre>
 
-
-
-<h4 id="underscorejs">Underscore.js</h4>
+<h4 id="underscorejs-1">Underscore.js</h4>
 
 
 
@@ -1803,7 +2295,7 @@ callback(_.isString(params.name));</code></pre>
 
 
 
-<h4 id="urlify">Urlify</h4>
+<h4 id="urlify-1">Urlify</h4>
 
 
 
@@ -1817,7 +2309,7 @@ callback(urlify(params.fullname));</code></pre>
 
 
 
-<h3 id="run-cloud-code">Run cloud code</h3>
+<h3 id="run-cloud-code-1">Run cloud code</h3>
 
 <p>To run cloud code, you need to specify function first. For this example lets use the prepared function in administration called Example, under section Cloud Code.</p>
 
@@ -1840,13 +2332,13 @@ callback(urlify(params.fullname));</code></pre>
 
 
 
-<h2 id="batch-request">Batch request</h2>
+<h2 id="batch-request-1">Batch request</h2>
 
 <p>To reduce the amount of time spent on network round trips, you can get, create, update, or delete up to 50 objects in one call, using the batch endpoint.</p>
 
 
 
-<h3 id="using-batch">Using batch</h3>
+<h3 id="using-batch-1">Using batch</h3>
 
 <p>Each command in a batch has id, method, endpoint, and body parameters that specify the HTTP command that would normally be used for that command. The commands are run in the order they are given. For example, to create a couple of example objects, send <strong>POST</strong> request to</p>
 
@@ -1855,6 +2347,8 @@ callback(urlify(params.fullname));</code></pre>
 <pre class="prettyprint"><code class="language-url hljs avrasm"><span class="hljs-label">https:</span>//demo<span class="hljs-preprocessor">.api</span><span class="hljs-preprocessor">.synergykit</span><span class="hljs-preprocessor">.com</span>/v2<span class="hljs-number">.1</span>/batch</code></pre>
 
 <p><strong>Curl example</strong></p>
+
+
 
 <pre class="prettyprint"><code class="language-text hljs scilab">curl -X POST \
 -H <span class="hljs-string">"Content-Type: application/json"</span> \

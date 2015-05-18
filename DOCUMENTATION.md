@@ -1,6 +1,6 @@
 ##Basics
 
-Welcome to SynergyKit's API documentation. We have created a simple namespaced API that allows you full control over your applications.
+Welcome to SynergyKit's API documentation. We have created a simple name spaced API that allows you full control over your applications.
 
 All of the functionality that you find in our web control panel is available via the API. Today we support all of the major application actions allowing you to build your own control interface using our API.
 
@@ -22,10 +22,10 @@ All API access is over HTTPS, and accessed via the domain `https://tenant.api.sy
 |`/users/<userId>`|DELETE|<a href="#delete-user">Delete user</a>
 |`/users/<userId>/roles`|POST|<a href="#add-role">Add role</a>
 |`/users/<userId>/roles/<roleUrl>`|DELETE|<a href="#remove-role">Remove role</a>
-|`/users/<userId>/platforms`|POST|<a href="#add-platform-to-user">Add platform to user</a>
-|`/users/<userId>/platforms/<platformId>`|GET|<a href="#retrieve-platform">Retrieve platform</a>
-|`/users/<userId>/platforms/<platformId>`|PUT|<a href="#update-platform">Update platform</a>
-|`/users/<userId>/platforms/<platformId>`|DELETE|<a href="#delete-platform">Delete platform</a>
+|`/users/me/platforms`|POST|<a href="#add-platform-to-user">Add platform to user</a>
+|`/users/me/platforms/<platformId>`|GET|<a href="#retrieve-platform">Retrieve platform</a>
+|`/users/me/platforms/<platformId>`|PUT|<a href="#update-platform">Update platform</a>
+|`/users/me/platforms/<platformId>`|DELETE|<a href="#delete-platform">Delete platform</a>
 |`/users`|POST|<a href="#linking-users">Linking users</a>
 |**Communication**|||
 |`/users/notification`|POST|<a href="#send-notification">Send notification</a>
@@ -50,7 +50,7 @@ For POST and PUT requests, the request body must be JSON, with the Content-Type 
 |GET| For simple retrieval of information about your data, users or application, you should use the GET method. The information you request will be returned to you as a JSON object.<br/><br/> The attributes defined by the JSON object can be used to form additional requests. Any request using the GET method is read-only and will not affect any of the objects you are querying.
 |PUT| To update the information about an object in your application, the PUT method is availible.<br/><br/>  Like the DELETE method, the PUT method is idempotent. It sets the state of the target using the provided values, regardless of their current values. Requests using the PUT method do not need to check the current attributes of the object. For every use of the PUT method it's required to include actual version of the object.
 |PATCH|To update just some information about an object in your application, the PATCH method is availible.
-|DELETE|To destroy an object or delete an user and remove it from your application, the DELETE method should be used. This will remove the specified object if it is found.<br/><br/>  If it is not found, the operation will return a response indicating that the object was not found. This idempotency means that you do not have to check for a resource's availability prior to issuing a delete command, the final state will be the same regardless of its existence.
+|DELETE|To destroy an object or delete an user and remove it from your application, the DELETE method should be used. This will remove the specified object if it is found.<br/><br/>  If it is not found, the operation will return a response indicationg that the object was not found. This idempotency means that you do not have eto check for a resource's availability prior to issuing a delete command, the final state will be the same regardless of its existence.
 
 ###HTTP Statuses
 Along with the HTTP methods that the API responds to, it will also return standard HTTP statuses, including error codes.
@@ -251,7 +251,7 @@ https://demo.api.synergykit.com/v2/data/example/2393265f-cfee-429a-ad04-3d2fbd1b
 The response body will contain an empty JSON object.
 
 ## Real-time data observerving
-SynergyKit data is retrieved by attaching an asynchronous listener to a collection. The listener will be triggered anytime the data changes. This section covers the basics of retrieving data, and how to perform simple queries.
+SynergyKit data is retrieved by attaching an asynchronous listener to a collection. The listener will be triggered  anytime the data changes. This section will cover the basics of retrieving data, and how to perform simple queries.
 
 Following examples are written in Node.js using Socket.io
 
@@ -511,12 +511,13 @@ To activate user, send an email with this activation link
 
 ```url
 https://demo.api.synergykit.com/v2
-``.1/users/activation/9d555815f0265c2270a7bbf3b1ea3d4e09ac48ae?callback=https://synergykit.com`
+.1/users/activation/9d555815f0265c2270a7bbf3b1ea3d4e09ac48ae?callback=https://synergykit.com
+```
 
 You can provide parameter callback with url address where you want to redirect user after activation.
 
 ### Login user
-After you allow users to sign up, you need to let them log into their account with an email and password in the future. To do this, send a POST request to
+After you allow users to sign up, you need to let them log in to their account with an email and password in the future. To do this, send a POST request to
 
 ```url
 https://demo.api.synergykit.com/v2.1/users/login
@@ -703,17 +704,19 @@ The response body will contain a JSON object.
 Platforms are useful for pairing individual mobile devices or web applications to the user via registration ID. After assignment platform to the user you will be able to send push notifications to the device or application.
 
 To add platform to user, send a **POST** request to
+
 ```url
-https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms
+https://demo.api.synergykit.com/v2.1/users/me/platforms
 ```
 
 **Curl example**
+
 ```text
 curl -X POST \
 -H "Content-Type: application/json" \
 -H "Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI=" \
 -d '{"platformName": "android", "registrationId": "1234ABCD5678"}' \
-https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms
+https://demo.api.synergykit.com/v2.1/users/me/platforms
 ```
 
 
@@ -737,16 +740,17 @@ The platform will be added to the user. Response body will contain a JSON object
 ```
 ### Retrieve platform 
 To show an individual platform user, send a **GET** request to
+
 ```url
-https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms/2393265f-cfee-429a
-``-ad042fbd1b126d`
+https://demo.api.synergykit.com/v2.1/users/me/platforms/2393265f-cfee-429a-ad042fbd1b126d
+```
 
 **Curl example**
 ```text
 curl -X GET \
 -H "Content-Type: application/json" \
 -H "Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI=" \
-https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms/2393265f-cfee-429a-ad04-3d2fbd1b126d
+https://demo.api.synergykit.com/v2.1/users/me/platforms/2393265f-cfee-429a-ad04-3d2fbd1b126d
 ```
 
 The response body will contain a JSON object.
@@ -766,8 +770,8 @@ The response body will contain a JSON object.
 To update platform of user, send a **PUT** request to
 
 ```url
-https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms/2393265f-cfee-429a
-``-ad042fbd1b126d`
+https://demo.api.synergykit.com/v2.1/users/me/platforms/2393265f-cfee-429a-ad042fbd1b126d
+```
 
 **Curl example**
 ```text
@@ -775,7 +779,7 @@ curl -X PUT \
 -H "Content-Type: application/json" \
 -H "Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI=" \
 -d '{"development": true}' \
-https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms/2393265f-cfee-429a-ad04-3d2fbd1b126d
+https://demo.api.synergykit.com/v2.1/users/me/platforms/2393265f-cfee-429a-ad04-3d2fbd1b126d
 ```
 
 The response body will contain a JSON object.
@@ -794,15 +798,15 @@ The response body will contain a JSON object.
 ### Delete platform
 To remove platform of user, send a **DELETE** request to
 ```url
-https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms/2393265f-cfee-429a
-``-ad042fbd1b126d`
+https://demo.api.synergykit.com/v2.1/users/me/platforms/2393265f-cfee-429a-ad042fbd1b126d
+```
 
 **Curl example**
 ```text
 curl -X DELETE \
 -H "Content-Type: application/json" \
 -H "Authorization: Basic ZGVtbzowMzIwNjI5OS05MzdiLTQ0YzMtODQxNi1iMzEwYWQzMmQyOGI=" \
-https://demo.api.synergykit.com/v2.1/users/65fcc878-1f87-478f-851e-a0aaedade8b2/platforms/2393265f-cfee-429a-ad04-3d2fbd1b126d
+https://demo.api.synergykit.com/v2.1/users/me/platforms/2393265f-cfee-429a-ad04-3d2fbd1b126d
 ```
 
 The response body will contain an empty JSON object.
@@ -902,9 +906,9 @@ The new user or logged user will be returned.
 ## Communication
 In SynergyKit you can communicate with your users by different ways. There are listed some methods below this section.
 
-One way is sending push notifications into user devices. This action needs to have filled your API key for Android devices in Settings, section Android. For push notifications into iOS devices you need to fill your password and certificates into Apple section in Settings.
+One way is to sending push notifications into user devices. This action need to have filled your API key for Android devices in Settings, section Android. For push notifications into iOS devices you need to fill your password and certificates into Apple section in Settings.
 
-Another way is sending emails to your users. For this you need to create email templates in administration under Mailing section.
+Another way is to sending emails to your users. For this you need to create email templates in administration under Mailing section.
 
 ### Send notification
 To send push notification to users, send a **POST** request to
@@ -1087,7 +1091,6 @@ request.get({
 }, function(err, response, result) {
     callback(result)
 })
-
 ```
 
 #### Underscore.js
